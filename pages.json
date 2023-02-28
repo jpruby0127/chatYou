@@ -4,7 +4,33 @@
     "style": {
       "navigationStyle": "custom"
     }
+  }, {
+    "path": "pages/me/me",
+    "style": {
+      "navigationBarTitleText": "个人中心",
+      "enablePullDownRefresh": false
+    }
+
+  }, {
+    "path": "pages/loginPage/loginPage",
+    "style": {
+      "navigationBarTitleText": "",
+      "enablePullDownRefresh": false
+    }
+
   }],
+
+  "tabBar": {
+    "list": [{
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/me/me",
+        "text": "我的"
+      }
+    ]
+  },
   "globalStyle": {
     "navigationStyle": "custom",
     "backgroundColor": "#F8F8F8",
