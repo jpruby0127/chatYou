@@ -131,6 +131,7 @@ export default {
       })
       gptFun.getRPTres(this.sendData).then(res => {
         uni.hideLoading()
+        console.log(res)
         if (res.res.data.choices[0].text) {
           // 拿到数据把机器人恢复的数据push进去
           this.dataList.push({

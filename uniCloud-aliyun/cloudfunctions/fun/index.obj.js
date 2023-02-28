@@ -1,4 +1,4 @@
-const API_KEY = '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'
+const API_KEY = '*************'
 const baseUrl = 'https://api.openai.com/v1'
 const header = {
   Authorization: "Bearer " + API_KEY //api_key引用全局变量
