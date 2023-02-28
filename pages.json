@@ -11,6 +11,13 @@
       "enablePullDownRefresh": false
     }
 
+  }, {
+    "path": "pages/loginPage/loginPage",
+    "style": {
+      "navigationBarTitleText": "",
+      "enablePullDownRefresh": false
+    }
+
   }],
 
   "tabBar": {

@@ -1,0 +1,7 @@
+{
+  "name": "wxlogin",
+  "dependencies": {},
+  "extensions": {
+    "uni-cloud-jql": {}
+  }
+}

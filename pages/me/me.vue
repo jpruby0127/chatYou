@@ -12,9 +12,15 @@
       <view class="user-info">
         <view class="left">
           <view class="user-avatar">
-            <img src="../../static/img/im/face/face_1.jpg" alt="" srcset="" />
+            <img
+              :src="
+                hasLogin ? userInfo.avatarUrl : '../../static/defaultAvatar.png'
+              "
+            />
           </view>
-          <view class="username">jpruby</view>
+          <view class="username">
+            {{ hasLogin ? userInfo.username : '游客' }}
+          </view>
         </view>
 
         <view class="right">图标</view>
@@ -30,8 +36,10 @@
 
           <i>图标</i>
         </view>
-
-        <button type="warn">退出账号</button>
+        <button v-if="!hasLogin" type="primary" @click="loginWx">
+          微信登录
+        </button>
+        <button v-else type="warn" @click="logout">退出账号</button>
         <button type="default">注销账号</button>
       </view>
     </view>
@@ -41,6 +49,14 @@
 <script>
 import { navParmsMixin } from '../../static/js/mixin.js'
 import NavBar from '../../components/common/NavBar.vue'
+
+import { $getwxCode } from '../../utils/WechatLoginUtils.js'
+import store from '@/store/index.js'
+import { mapState, mapGetters } from 'vuex'
+const wxlogin = uniCloud.importObject('wxlogin', {
+  customUI: true
+})
+
 export default {
   mixins: [navParmsMixin],
   components: {
@@ -48,6 +64,59 @@ export default {
   },
   data() {
     return {}
+  },
+  computed: {
+    ...mapState({
+      userInfo: state => state.userStore.userInfo,
+      hasLogin: state => state.userStore.hasLogin,
+      token: state => state.userStore.token
+    })
+  },
+  methods: {
+    //用户与点击登录
+    async loginWx() {
+      //用户逻辑...
+      if (!this.hasLogin) {
+        //判断用户是否已经在库，在库直接返回用户信息，不在库跳转到注册页面
+        //拿到openid（云对象请求openid）
+        // a.获取code(封装)
+        let code = await $getwxCode().catch(err => {
+          console.log('err: ', err)
+        })
+        console.log('code: ', code)
+        const res = await wxlogin.getOpenId(code).catch(e => {
+          console.log('获取openCode失败: ', e)
+        })
+        console.log('res: ', res)
+        if (!res.loginInfo.data) {
+          console.log('没有获取到data数据')
+        }
+        let openid = res.loginInfo.data.openid
+        // 用户在库 写入全局
+        const tempUserInfo = await wxlogin.queryUserByOpenid(openid)
+        // 用户在库,调用全局刷新用户信息
+        if (tempUserInfo.user.data[0]) {
+          this.$store.dispatch('setUserInfoToDB', { openid }) //因为用户存在只携带openid即可
+          return
+        }
+
+        // 首次注册登录跳转,
+        uni.navigateTo({
+          url: '/pages/loginPage/loginPage'
+        })
+      } else {
+        uni.showToast({
+          title: '已经是登录状态了',
+          icon: 'error'
+        })
+      }
+
+      //用户逻辑
+    },
+    //用户退出
+    logout() {
+      this.$store.commit('userLogout')
+    }
   }
 }
 </script>
