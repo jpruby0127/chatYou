@@ -1,0 +1,111 @@
+/**
+ * 阿里巴巴普惠体 2.0 45 Light
+ */
+
+/* 字体文件放在本地，微信小程序不支持大于40k的所以这里注释掉了
+@font-face {
+  font-family: 'AlibabaPuHuiTi';
+  src: url('@/static/fonts/AlibabaPuHuiTi_2_45_Light.woff2') format('woff2'),
+    url('@/static/fonts/AlibabaPuHuiTi_2_45_Light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+*/
+
+/* latin-ext */
+@font-face {
+  font-family: 'Righteous';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('@/static/fonts/1cXxaUPXBpj2rGoU7C9WhnGFucE.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB,
+    U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* latin */
+@font-face {
+  font-family: 'Righteous';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('@/static/fonts/1cXxaUPXBpj2rGoU7C9WiHGF.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+    U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'AlibabaPuHuiTi';
+  src: url('https://mp-215142d6-0a69-4d11-97a2-1b477906a361.cdn.bspapp.com/cloudstorage/37aa17b3-cd46-4847-9862-2b803c95a6fc.woff2')
+      format('woff2'),
+    url('https://mp-215142d6-0a69-4d11-97a2-1b477906a361.cdn.bspapp.com/cloudstorage/12a4bd33-c132-4ee6-87d0-723afe57ecbb.woff')
+      format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+/**
+ * 仓耳渔阳体 W01
+ */
+@font-face {
+  font-family: 'TsangerYuYangTW01';
+  src: url('https://mp-215142d6-0a69-4d11-97a2-1b477906a361.cdn.bspapp.com/cloudstorage/43af4cb5-fd8a-4ba6-90f5-f46ee975a133.woff2')
+      format('woff2'),
+    url('https://mp-215142d6-0a69-4d11-97a2-1b477906a361.cdn.bspapp.com/cloudstorage/676670d0-923e-4c81-9f07-639719c4e7ce.woff')
+      format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/**
+ * goole字体图标
+ */
+
+/* fallback */
+@font-face {
+  font-family: 'Material Symbols Outlined';
+  font-style: normal;
+  font-weight: 100 700;
+  src: url(https://fonts.gstatic.com/s/materialsymbolsoutlined/v75/kJEhBvYX7BgnkSrUwT8OhrdQw4oELdPIeeII9v6oFsLjBuVY.woff2)
+    format('woff2');
+}
+.iconfont {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}
+.icon-home:before {
+  content: '\e88a';
+}
+.icon-user::before {
+  content: '\e7fd';
+}
+//谷歌字体填充效果
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+  color: pink;
+}
+
+// 全局字体简化使用打点即可
+.alibaba {
+  font-family: 'AlibabaPuHuiTi';
+}
+.canger {
+  font-family: 'TsangerYuYangTW01';
+}
+.righteous {
+  font-family: 'Righteous';
+}
