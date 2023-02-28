@@ -18,7 +18,9 @@
   <!-- 如果是h5的页面顶部导航栏的样式如下 -->
   <!-- #ifndef MP-WEIXIN -->
   <view class="navi-box">
-    <view class="title righteous" style="line-height: 80rpx;">chatYou</view>
+    <view class="title righteous" style="line-height: 80rpx;">
+      <slot></slot>
+    </view>
   </view>
   <!-- #endif -->
 </template>
@@ -44,9 +46,9 @@ export default {
 
 <style lang="scss">
 .navi-box {
+  width: 100%;
   z-index: 1;
   position: fixed;
-  width: 100%;
   background-color: #7838c5;
   .title {
     color: #fff;

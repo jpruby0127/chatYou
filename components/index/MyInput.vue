@@ -7,16 +7,8 @@
       :adjust-position="true"
       :disable-default-padding="true"
       placeholder="请输入"
-      @focus="
-        () => {
-          onfocusBottom = '0rpx'
-        }
-      "
-      @blur="
-        () => {
-          onfocusBottom = null
-        }
-      "
+      @focus="inputFocus"
+      @blur="inputBlur"
     ></textarea>
     <i @click="mysubmit" class="t-icon t-icon-submit"></i>
   </view>
@@ -37,6 +29,14 @@ export default {
       this.$emit('getMsg', this.msg)
       //清空绑定数据
       this.msg = ''
+    },
+    inputFocus() {
+      this.onfocusBottom = '0rpx'
+      uni.hideTabBar()
+    },
+    inputBlur() {
+      this.onfocusBottom = null
+      uni.showTabBar()
     }
   }
 }

@@ -4,7 +4,9 @@
     <NavBar
       :statusBarHeight="statusBarHeight"
       :navigatorHeight="navigatorHeight"
-    ></NavBar>
+    >
+      chatYou
+    </NavBar>
 
     <!-- 对话面板 -->
     <MainDialog :totalHeight="totalHeight" :dataList="dataList"></MainDialog>
@@ -19,8 +21,10 @@
 import NavBar from '../../components/common/NavBar.vue'
 import MainDialog from '../../components/index/MainDialog.vue'
 import MyInput from '../../components/index/MyInput.vue'
+import { navParmsMixin } from '../../static/js/mixin.js'
 import { getHeight } from '../../common/utils.js'
 export default {
+  mixins: [navParmsMixin],
   components: {
     NavBar,
     MainDialog,
@@ -97,11 +101,7 @@ export default {
         temperature: 0.5,
         max_tokens: 2048,
         top_p: 0.3
-      },
-      //获得距离
-      statusBarHeight: 0, //状态栏的高度
-      navigatorHeight: 0, //导航栏高度
-      totalHeight: 0 //总高度
+      }
     }
   },
 
@@ -119,15 +119,7 @@ export default {
       immediate: true
     }
   },
-  onLoad() {
-    /**
-     * 获取系统高度信息，这里特指微信小程序
-     */
-    const { navigatorHeight, statusBarHeight, totalHeight } = getHeight()
-    this.navigatorHeight = navigatorHeight
-    this.statusBarHeight = statusBarHeight
-    this.totalHeight = totalHeight
-  },
+  onLoad() {},
   methods: {
     //提交后刷新聊天记录
     getMsg(e) {
@@ -150,8 +142,12 @@ export default {
         createTime: Date.now()
       })
 
+      uni.showLoading({
+        title: '机器人在地里挖姜中...'
+      })
       //调用封装的全局请求方法
       this.$request('/completions', this.sendData, 'POST').then(res => {
+        uni.hideLoading()
         // 打印调用成功回调
         console.log(res.choices[0].text)
         if (res.choices[0].text) {
