@@ -1,7 +1,7 @@
 <template>
   <view class="container">
     <!-- 导航组件 -->
-    <NavBar
+    <NavBargit
       :statusBarHeight="statusBarHeight"
       :navigatorHeight="navigatorHeight"
     ></NavBar>
